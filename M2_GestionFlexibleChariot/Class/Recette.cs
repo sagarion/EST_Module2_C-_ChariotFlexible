@@ -12,10 +12,10 @@ namespace M2_GestionFlexibleChariot.Class
 {
     class Recette
     {
-        private int identifiant;
-        private string libellé;
-        private Pas[] Pas;
-        private DateTime dateCréation;
+        private int identifiant { get; }
+        private string libellé { get; set; }
+        private Pas[] Pas{ get; }
+        private DateTime dateCréation { get; set; }
 
         // Constructeur
 
@@ -46,30 +46,6 @@ namespace M2_GestionFlexibleChariot.Class
         }
 
         // Getter / Setter
-        public int GetIdentifiant()
-        {
-            return identifiant;
-        }
-
-        public string GetLibellé()
-        {
-            return libellé;
-        }
-
-        public void SetLibellé(string libellé)
-        {
-            this.libellé = libellé;
-        }
-
-        public DateTime GetDateCréation()
-        {
-            return dateCréation;
-        }
-
-        public Pas[] getPas()
-        {
-            return Pas;
-        }
 
         /// <summary>
         /// modifie le pas à l'index donnée avec les information fournis

@@ -15,32 +15,32 @@ namespace M2_GestionFlexibleChariot.Class
         /// <summary>
         /// identificateur de la base de donnée pour ce pas
         /// </summary>
-        private int identifiant;
+        private int identifiant { get;  }
 
         /// <summary>
         /// numéro de pas pour la recette à laquel le pas est lié
         /// </summary>
-        private int index;
+        private int index { get; set; }
 
         /// <summary>
         /// temps d'attente du chariot à la position
         /// </summary>
-        private int temps;
+        private int temps { get; set; }
 
         /// <summary>
         /// position à laquel le chariot doit se rendre
         /// </summary>
-        private int position;
+        private int position { get; set; }
 
         /// <summary>
         /// libellé du pas
         /// </summary>
-        private string libellé;
+        private string libellé { get; set; }
 
         /// <summary>
         /// quittance nécessaire avant de passer au pas suivant
         /// </summary>
-        private bool quittance;
+        private bool quittance { get; set; }
 
         // constructeur
 
@@ -77,63 +77,6 @@ namespace M2_GestionFlexibleChariot.Class
             this.temps = temps;
             this.position = position;
             this.libellé = libellé;
-            this.quittance = quittance;
-        }
-
-
-        // Getter / Setter
-        public int GetIdentifiant()
-        {
-            return identifiant;
-        }
-
-        public int GetIndex()
-        {
-            return index;
-        }
-
-        public void SetIndex(int index)
-        {
-            this.index = index;
-        }
-
-        public int GetTemps()
-        {
-            return temps;
-        }
-
-        public void SetTemps(int temps)
-        {
-            this.temps = temps;
-        }
-
-        public int GetPosition()
-        {
-            return position;
-        }
-
-        public void SetPosition(int position)
-        {
-            this.position = position;
-        }
-
-        public string GetLibellé()
-        {
-            return libellé;
-        }
-
-        public void SetLibellé(string libellé)
-        {
-            this.libellé = libellé;
-        }
-
-        public bool GetQuittance()
-        {
-            return quittance;
-        }
-
-        public void SetQuittance(bool quittance)
-        {
             this.quittance = quittance;
         }
     }
