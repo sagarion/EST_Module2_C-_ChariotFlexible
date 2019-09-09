@@ -126,5 +126,15 @@ namespace M2_GestionFlexibleChariot.Class
         {
             this.libellé = libellé;
         }
+
+        public bool GetQuittance()
+        {
+            return quittance;
+        }
+
+        public void SetQuittance(bool quittance)
+        {
+            this.quittance = quittance;
+        }
     }
 }
