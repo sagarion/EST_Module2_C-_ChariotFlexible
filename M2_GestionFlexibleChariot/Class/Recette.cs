@@ -8,12 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace M2_GestionFlexibleChariot
+namespace M2_GestionFlexibleChariot.Class
 {
-    class Program
+    class Recette
     {
-        static void Main(string[] args)
-        {
-        }
     }
 }
