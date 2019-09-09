@@ -42,6 +42,12 @@ namespace M2_GestionFlexibleChariot.Class
         {
             this.libellé = libellé;
             Pas = new Pas[10];
+
+            for (int i = 0; i < 10; i++)
+            {
+                Pas[i] = new Pas(i + 1, 0, 0, "new", false);
+            }
+
             this.dateCréation = DateTime.Now;
         }
 
