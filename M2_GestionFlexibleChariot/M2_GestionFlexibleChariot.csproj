@@ -47,6 +47,8 @@
     <Compile Include="Class\Pas.cs" />
     <Compile Include="Class\Lot.cs" />
     <Compile Include="Class\Recette.cs" />
+    <Compile Include="Interface\InterfaceRecette.cs" />
+    <Compile Include="Interface\Menu.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -56,7 +58,6 @@
   <ItemGroup>
     <Folder Include="Application\" />
     <Folder Include="BDD\" />
-    <Folder Include="Interface\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

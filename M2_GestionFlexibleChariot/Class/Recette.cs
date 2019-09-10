@@ -47,7 +47,6 @@ namespace M2_GestionFlexibleChariot.Class
             {
                 Pas[i] = new Pas(i + 1, 0, 0, "new", false);
             }
-
             this.dateCréation = DateTime.Now;
         }
 
