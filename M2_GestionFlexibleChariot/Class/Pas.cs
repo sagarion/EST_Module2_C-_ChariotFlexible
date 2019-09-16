@@ -15,32 +15,32 @@ namespace M2_GestionFlexibleChariot.Class
         /// <summary>
         /// identificateur de la base de donnée pour ce pas
         /// </summary>
-        private int identifiant { get;  }
+        private int identifiant;
 
         /// <summary>
         /// numéro de pas pour la recette à laquel le pas est lié
         /// </summary>
-        private int index { get; set; }
+        private int index;
 
         /// <summary>
         /// temps d'attente du chariot à la position
         /// </summary>
-        private int temps { get; set; }
+        private int temps;
 
         /// <summary>
         /// position à laquel le chariot doit se rendre
         /// </summary>
-        private int position { get; set; }
+        private int position;
 
         /// <summary>
         /// libellé du pas
         /// </summary>
-        private string libellé { get; set; }
+        private string libellé;
 
         /// <summary>
         /// quittance nécessaire avant de passer au pas suivant
         /// </summary>
-        private bool quittance { get; set; }
+        private bool quittance;
 
         // constructeur
 
@@ -78,6 +78,90 @@ namespace M2_GestionFlexibleChariot.Class
             this.position = position;
             this.libellé = libellé;
             this.quittance = quittance;
+        }
+
+        // accesseur
+
+        /// <summary>
+        /// Propriété lié à l'identificateur de la base de donnée pour ce pas
+        /// </summary>
+        public int Identifiant {
+            get {
+                return identifiant;
+            }
+            set {
+                identifiant = value;            
+            }
+        }
+
+        /// <summary>
+        /// Propriété lié au numéro de pas pour la recette à laquel le pas est lié
+        /// </summary>
+        public int Index {
+            get
+            {
+                return index;
+            }
+            set
+            {
+                index = value;
+            }
+        }
+
+        /// <summary>
+        /// Propriété lié au temps d'attente du chariot à la position
+        /// </summary>
+        public int Temps {
+            get
+            {
+                return temps;
+            }
+            set
+            {
+                temps = value;
+            }
+        }
+
+        /// <summary>
+        /// Propriété lié à la position à laquel le chariot doit se rendre
+        /// </summary>
+        public int Position {
+            get
+            {
+                return position;
+            }
+            set
+            {
+                position = value;
+            }
+        }
+
+        /// <summary>
+        /// Propriété lié au libellé du pas
+        /// </summary>
+        public string Libellé {
+            get
+            {
+                return libellé;
+            }
+            set
+            {
+                libellé = value;
+            }
+        }
+
+        /// <summary>
+        /// Propriété lié à la quittance nécessaire avant de passer au pas suivant
+        /// </summary>
+        public bool Quittance {
+            get
+            {
+                return quittance;
+            }
+            set
+            {
+                quittance = value;
+            }
         }
     }
 }

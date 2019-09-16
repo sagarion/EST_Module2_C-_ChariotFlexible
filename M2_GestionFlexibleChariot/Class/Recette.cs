@@ -12,11 +12,22 @@ namespace M2_GestionFlexibleChariot.Class
 {
     class Recette
     {
-        private int identifiant { get; }
-        private string libellé { get; set; }
-        private Pas[] Pas{ get; }
-        private DateTime dateCréation { get; set; }
-
+        /// <summary>
+        /// Identifiant en abse de donnée associé à cette recette
+        /// </summary>
+        private int identifiant;
+        /// <summary>
+        /// Libellé associé à cette recette
+        /// </summary>
+        private string libellé;
+        /// <summary>
+        /// Tableau regroupant les pas d'une recette
+        /// </summary>
+        private Pas[] pas;
+        /// <summary>
+        /// Date de création de la recette
+        /// </summary>
+        private DateTime dateCréation;
         // Constructeur
 
         /// <summary>
@@ -30,7 +41,7 @@ namespace M2_GestionFlexibleChariot.Class
         {
             this.identifiant = identifiant;
             this.libellé = libellé;
-            Pas = pas;
+            pas = pas;
             this.dateCréation = dateCréation;
         }
 
@@ -41,11 +52,11 @@ namespace M2_GestionFlexibleChariot.Class
         public Recette(string libellé)
         {
             this.libellé = libellé;
-            Pas = new Pas[10];
+            pas = new Pas[10];
 
             for (int i = 0; i < 10; i++)
             {
-                Pas[i] = new Pas(i + 1, 0, 0, "new", false);
+                pas[i] = new Pas(i + 1, 0, 0, "new", false);
             }
             this.dateCréation = DateTime.Now;
         }
@@ -53,14 +64,73 @@ namespace M2_GestionFlexibleChariot.Class
         // Getter / Setter
 
         /// <summary>
-        /// modifie le pas à l'index donnée avec les information fournis
+        /// Modifie le pas à l'index donnée avec les information fournis
         /// </summary>
         /// <param name="pas"></param>
         /// <param name="index"></param>
-        public void SetPas(Pas pas, int index)
+        public void UpdateUnPas(Pas pas, int index)
         {
-            this.Pas[index] = pas;
+            this.pas[index] = pas;
         }
 
+        /// <summary>
+        /// Propriété gérant l'identifiant en abse de donnée associé à cette recette
+        /// </summary>
+        public int Identifiant
+        {
+            get
+            {
+                return identifiant;
+            }
+            set
+            {
+                identifiant = value;
+            }
+        }
+
+        /// <summary>
+        /// Propriété gérant le libellé associé à cette recette
+        /// </summary>
+        public string Libellé
+        {
+            get
+            {
+                return libellé;
+            }
+            set
+            {
+                libellé = value;
+            }
+        }
+
+        /// <summary>
+        /// Propriété gérant le tableau regroupant les pas d'une recette
+        /// </summary>
+        public Pas[] Pas
+        {
+            get
+            {
+                return pas;
+            }
+            set
+            {
+                pas = value;
+            }
+        }
+
+        /// <summary>
+        /// Propriété gérant la date de création de la recette
+        /// </summary>
+        public DateTime DateCréation
+        {
+            get
+            {
+                return dateCréation;
+            }
+            set
+            {
+                dateCréation = value;
+            }
+        }
     }
 }
