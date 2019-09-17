@@ -10,6 +10,22 @@ namespace M2_GestionFlexibleChariot.BDD
 {
     class BDDRecette
     {
+        public static void CreateRecette(Recette recette)
+        {
+            try
+            {
+                // création des requêtes, execution de celles-ci et import des résultat dans les curseurs
+                string sqlRecette = $"INSERT INTO Recette ( Recette_libelle, Recette_DateCrea)" +
+                                    $"VALUES( {recette.Libellé}, {recette.DateCréation.ToShortDateString()}); ";
+                MySqlCommand command = new MySqlCommand(sqlRecette, BDDConnexion.GetConnection());
+               
+            }
+            catch (Exception ex)
+            {
+                System.Console.WriteLine(ex.Message);
+            }
+        }
+
         /// <summary>
         /// Importe les données d'une recette depuis la base de donnée et créer un objet correspondant
         /// </summary>
@@ -26,28 +42,8 @@ namespace M2_GestionFlexibleChariot.BDD
                 MySqlCommand command = new MySqlCommand(sqlRecette, BDDConnexion.GetConnection());
                 MySqlDataReader readerRecette = command.ExecuteReader();
 
-                string sqlPas = $"SELECT identifiant,index,temps, position, libellé, quittance FROM Pas WHERE Recette_identifiant='{identifiant}'";
-                command = new MySqlCommand(sqlPas, BDDConnexion.GetConnection());
-                MySqlDataReader readerPas = command.ExecuteReader();
-
-
-                Pas[] pas = new Pas[10];
-                int index = 0;
-
-                // parcours le curseur jusqu'à créer le tableau complet de Pas pour la recette
-                while (readerPas.Read())
-                {
-                    pas[index] = new Pas(int.Parse(readerPas[0].ToString()),
-                        int.Parse(readerPas[1].ToString()),
-                        int.Parse(readerPas[2].ToString()),
-                        int.Parse(readerPas[3].ToString()),
-                        readerPas[4].ToString(),
-                        bool.Parse(readerPas[5].ToString()));
-
-                    index++;
-                }
-                // ferme le curseur de pas
-                readerPas.Close();
+                // importe les pas liés à la recette
+                Pas[] pas = BDDPas.RecetteSelectPas(recette.Identifiant);
 
                 // une fois le tableau de pas créé, créer l'objet recette
                 recette = new Recette(int.Parse(readerRecette[0].ToString()),
