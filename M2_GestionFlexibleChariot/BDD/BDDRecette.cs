@@ -61,5 +61,33 @@ namespace M2_GestionFlexibleChariot.BDD
 
             return recette;
         }
+
+        /// <summary>
+        /// Mets à jours les informations en base de données d'une recette par rapport à l'objet placé en paramètre
+        /// </summary>
+        /// <param name="recette"> L'objet recette servant de référence pour la mise à jour </param>
+        public static void UpdateRecette(Recette recette)
+        {
+            try
+            {
+                // mets à jour les données de la recette
+                string sqlRecette = $"UPDATE Recette" +
+                                    $"SET Recette_Libelle = {recette.Libellé}, " +
+                                        $"Recette_dateCrea = {recette.DateCréation.ToShortDateString()}" +
+                                    $"WHERE Recette_ID = {recette.Identifiant};";
+                MySqlCommand command = new MySqlCommand(sqlRecette, BDDConnexion.GetConnection());
+
+                // met à jour les données de chaque pas de la recette
+                foreach (Pas pas in recette.Pas)
+                {
+                    BDDPas.UpdatePas(pas);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                System.Console.WriteLine(ex.Message);
+            }
+        }
     }
 }
