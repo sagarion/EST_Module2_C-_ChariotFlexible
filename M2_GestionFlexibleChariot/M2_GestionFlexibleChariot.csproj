@@ -47,6 +47,7 @@
     <Compile Include="BDD\BDDConnexion.cs" />
     <Compile Include="BDD\BDDPas.cs" />
     <Compile Include="BDD\BDDRecette.cs" />
+    <Compile Include="Class\Etat.cs" />
     <Compile Include="Class\Evenement.cs" />
     <Compile Include="Class\Pas.cs" />
     <Compile Include="Class\Lot.cs" />

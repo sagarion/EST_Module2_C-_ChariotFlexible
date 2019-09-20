@@ -82,10 +82,7 @@ namespace M2_GestionFlexibleChariot.Class
             {
                 return identifiant;
             }
-            set
-            {
-                identifiant = value;
-            }
+
         }
 
         /// <summary>
