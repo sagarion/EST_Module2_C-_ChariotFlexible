@@ -76,7 +76,7 @@ namespace M2_GestionFlexibleChariot.BDD
         /// <summary>
         /// Importe les pas lié à la recette dont l'identifiant est placé en paramètre et les retourne dans un tableau
         /// </summary>
-        /// <param name="id"> identifiatn de la recette dont il faut importé les pas </param>
+        /// <param name="id"> identifiant de la recette dont il faut importé les pas </param>
         /// <returns> Un tableau comportant les 10 pas qui forme la recette</returns>
         public static Pas[] RecetteSelectPas(int id)
         {
