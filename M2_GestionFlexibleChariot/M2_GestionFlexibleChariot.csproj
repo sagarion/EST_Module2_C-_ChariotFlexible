@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BDD\BDDConnexion.cs" />
+    <Compile Include="BDD\BDDEtat.cs" />
     <Compile Include="BDD\BDDPas.cs" />
     <Compile Include="BDD\BDDRecette.cs" />
     <Compile Include="Class\Etat.cs" />
