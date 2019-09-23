@@ -104,12 +104,12 @@ namespace M2_GestionFlexibleChariot.Class
         /// <summary>
         /// constructeur pour l'import de données
         /// </summary>
-        /// <param name="identifiant"></param>
-        /// <param name="nom"></param>
-        /// <param name="dateCréation"></param>
-        /// <param name="quantitéAProduire"></param>
-        /// <param name="evenements"></param>
-        /// <param name="etat"></param>
+        /// <param name="identifiant"> l'identifiant de gestion du lot</param>
+        /// <param name="nom"> le nom du lot</param>
+        /// <param name="dateCréation"> la date de création du lot</param>
+        /// <param name="quantitéAProduire"> la quantité de pièce à produire</param>
+        /// <param name="evenements"> la liste d'événement lié à ce lot</param>
+        /// <param name="etat"> l'état actuel du lot</param>
         public Lot(int identifiant, string nom, DateTime dateCréation, int quantitéAProduire, List<Evenement> evenements, Etat etat)
         {
             this.identifiant = identifiant;
@@ -118,6 +118,15 @@ namespace M2_GestionFlexibleChariot.Class
             this.quantitéAProduire = quantitéAProduire;
             this.evenements = evenements;
             this.etat = etat;
+        }
+
+        public Lot(string nom, int quantitéAProduire, Etat etat)
+        {
+            this.nom = nom;
+            this.quantitéAProduire = quantitéAProduire;
+            this.etat = etat;
+            this.evenements = new List<Evenement>();
+            dateCréation = DateTime.Now;
         }
     }
 }
