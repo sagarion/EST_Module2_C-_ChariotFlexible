@@ -41,7 +41,7 @@ namespace M2_GestionFlexibleChariot.Class
         {
             this.identifiant = identifiant;
             this.libellé = libellé;
-            pas = pas;
+            this.pas = pas;
             this.dateCréation = dateCréation;
         }
 
@@ -128,6 +128,16 @@ namespace M2_GestionFlexibleChariot.Class
             {
                 dateCréation = value;
             }
+        }
+
+        public string ToString()
+        {
+            return $"{this.Identifiant.ToString()} / {this.Libellé} / {this.DateCréation.ToShortTimeString()}";
+        }
+
+        public Recette Duplicate()
+        {
+            return new Recette(identifiant,libellé,pas,dateCréation);
         }
     }
 }

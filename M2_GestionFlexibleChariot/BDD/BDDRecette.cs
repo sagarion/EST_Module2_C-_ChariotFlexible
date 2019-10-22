@@ -89,5 +89,35 @@ namespace M2_GestionFlexibleChariot.BDD
                 System.Console.WriteLine(ex.Message);
             }
         }
+
+        /// <summary>
+        /// Détermine si la recette est "muable" (modifiable/supprimable) en vérifiant si un lot y est associé
+        /// </summary>
+        /// <param name="identifiant"> identifiant de gestion de la recette à vérifier</param>
+        /// <returns> un booléen décrivant si la recette est muable</returns>
+        public static bool EstMuable(int identifiant)
+        {
+            // par défaut est non-muable
+            bool muable = false;
+
+            try
+            {
+                // création des requêtes, execution de celles-ci et import des résultat dans les curseurs
+                string sqlRecette = $"SELECT count(*) FROM Lot WHERE Recette_ID = {identifiant}";
+                MySqlCommand command = new MySqlCommand(sqlRecette, BDDConnexion.GetConnection());
+                MySqlDataReader readerRecette = command.ExecuteReader();
+
+                // vérifie que le nombre de lot lié à cette recette est bien 0
+                muable = int.Parse(readerRecette[0].ToString()) == 0;
+                // ferme le curseur de recette
+                readerRecette.Close();
+            }
+            catch (Exception ex)
+            {
+                System.Console.WriteLine(ex.Message);
+            }
+
+            return muable;
+        }
     }
 }

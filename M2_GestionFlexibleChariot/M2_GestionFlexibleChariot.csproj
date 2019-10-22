@@ -36,6 +36,8 @@
     <Reference Include="MySql.Data, Version=8.0.17.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -47,6 +49,7 @@
     <Compile Include="BDD\BDDConnexion.cs" />
     <Compile Include="BDD\BDDEtat.cs" />
     <Compile Include="BDD\BDDEvenement.cs" />
+    <Compile Include="BDD\BDDLot.cs" />
     <Compile Include="BDD\BDDPas.cs" />
     <Compile Include="BDD\BDDRecette.cs" />
     <Compile Include="Class\Etat.cs" />
@@ -54,16 +57,17 @@
     <Compile Include="Class\Pas.cs" />
     <Compile Include="Class\Lot.cs" />
     <Compile Include="Class\Recette.cs" />
-    <Compile Include="Interface\InterfaceRecette.cs" />
-    <Compile Include="Interface\Menu.cs" />
+    <Compile Include="Data.cs" />
+    <Compile Include="Interface\Console.cs" />
+    <Compile Include="Interface\MenuLot.cs" />
+    <Compile Include="Interface\MenuPrincipal.cs" />
+    <Compile Include="Interface\MenuRecette.cs" />
+    <Compile Include="Interface\Utilitaire.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Application\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

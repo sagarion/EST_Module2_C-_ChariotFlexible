@@ -163,5 +163,7 @@ namespace M2_GestionFlexibleChariot.Class
                 quittance = value;
             }
         }
+
+
     }
 }
