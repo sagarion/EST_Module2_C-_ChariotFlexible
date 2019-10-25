@@ -24,6 +24,8 @@ namespace M2_GestionFlexibleChariot.Class
 
         private Etat etat;
 
+        private Recette recette;
+
         // propriété associé à l'identifiant
         public int Identifiant
         {
@@ -100,6 +102,19 @@ namespace M2_GestionFlexibleChariot.Class
             }
         }
 
+        // propriété associé à la recette du lot
+        public Recette Recette
+        {
+            get
+            {
+                return recette;
+            }
+            set
+            {
+                recette = value;
+            }
+        }
+
 
         /// <summary>
         /// constructeur pour l'import de données
@@ -110,7 +125,8 @@ namespace M2_GestionFlexibleChariot.Class
         /// <param name="quantitéAProduire"> la quantité de pièce à produire</param>
         /// <param name="evenements"> la liste d'événement lié à ce lot</param>
         /// <param name="etat"> l'état actuel du lot</param>
-        public Lot(int identifiant, string nom, DateTime dateCréation, int quantitéAProduire, List<Evenement> evenements, Etat etat)
+        /// /// <param name="recette"> recette lié au lot</param>
+        public Lot(int identifiant, string nom, DateTime dateCréation, int quantitéAProduire, List<Evenement> evenements, Etat etat, Recette recette)
         {
             this.identifiant = identifiant;
             this.nom = nom;
@@ -118,15 +134,17 @@ namespace M2_GestionFlexibleChariot.Class
             this.quantitéAProduire = quantitéAProduire;
             this.evenements = evenements;
             this.etat = etat;
+            this.recette = recette;
         }
 
-        public Lot(string nom, int quantitéAProduire, Etat etat)
+        public Lot(string nom, int quantitéAProduire, int idRecette)
         {
             this.nom = nom;
             this.quantitéAProduire = quantitéAProduire;
-            this.etat = etat;
+            this.etat = new Etat(1,"En attente");
             this.evenements = new List<Evenement>();
-            dateCréation = DateTime.Now;
+            this.dateCréation = DateTime.Now;
+            this.recette = Data.recettes[idRecette];
         }
     }
 }

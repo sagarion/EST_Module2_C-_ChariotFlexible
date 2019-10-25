@@ -59,9 +59,12 @@
     <Compile Include="Class\Recette.cs" />
     <Compile Include="Data.cs" />
     <Compile Include="Interface\Console.cs" />
+    <Compile Include="Interface\Lot.cs" />
     <Compile Include="Interface\MenuLot.cs" />
     <Compile Include="Interface\MenuPrincipal.cs" />
     <Compile Include="Interface\MenuRecette.cs" />
+    <Compile Include="Interface\Pas.cs" />
+    <Compile Include="Interface\Recette.cs" />
     <Compile Include="Interface\Utilitaire.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

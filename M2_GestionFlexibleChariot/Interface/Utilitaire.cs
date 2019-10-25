@@ -66,6 +66,43 @@ namespace M2_GestionFlexibleChariot.Interface
         }
 
         /// <summary>
+        /// Fonction gérant la saisie d'un booléen
+        /// </summary>
+        /// <param name="message"> Message explicitant le rôle du booléen entrée </param>
+        /// <returns></returns>
+        public static bool SaisirBool(string message)
+        {
+            bool saisieValid = false;
+            string saisie;
+            bool result = false;
+
+            do
+            {
+                System.Console.Write("Veuillez saisire o(oui)/n(non) ({0}) : ", message);
+
+                saisie = System.Console.ReadLine().ToUpper();
+
+                if (saisie == "O")
+                {
+                    saisieValid = true;
+                    result = true;
+                }else if(saisie == "N")
+                {
+                    saisieValid = true;
+                    result = false; ;
+                }
+                else
+                {
+                    System.Console.WriteLine("Veuillez entrer une valeur correcte o (pour oui) / n (pour non)");
+                    System.Console.WriteLine();
+                }
+
+            } while (!saisieValid);
+
+            return result;
+        }
+
+        /// <summary>
         /// Efface la console
         /// </summary>
         public static void NettoyerConsole()

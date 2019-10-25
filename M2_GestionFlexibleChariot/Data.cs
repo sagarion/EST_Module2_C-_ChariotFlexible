@@ -27,6 +27,10 @@ namespace M2_GestionFlexibleChariot
             recettes.Add(new Recette(1,"Recette 1",pas,DateTime.Now));
             recettes.Add(new Recette(2, "Recette 2", pas, DateTime.Now));
             recettes.Add(new Recette(3, "Recette 3", pas, DateTime.Now));
+
+            lots.Add(new Lot(1, "lot 1",DateTime.Now, 2, new List<Evenement>(), new Etat(1, "En attente"),recettes[0]));
+            lots.Add(new Lot(2, "lot 2", DateTime.Now, 2, new List<Evenement>(), new Etat(1, "En production"), recettes[1]));
+            lots.Add(new Lot(2, "lot 2", DateTime.Now, 2, new List<Evenement>(), new Etat(1, "Terminée"), recettes[2]));
         }
 
         public static int GetNextIdRecette()
@@ -34,6 +38,16 @@ namespace M2_GestionFlexibleChariot
             nextIdRecette += 1;
 
             return nextIdRecette;
+        }
+
+        public static Recette GetRecette(int id)
+        {
+            return recettes[id - 1];
+        }
+
+        public static Lot GetLot(int id)
+        {
+            return lots[id - 1];
         }
     }
 }

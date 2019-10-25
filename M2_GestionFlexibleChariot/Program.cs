@@ -18,15 +18,23 @@ namespace M2_GestionFlexibleChariot
             Data.Init();
 
             bool MenuPrincipalFin = false;
-            int saisieUtilisateur;
+
+            // valeur saisie par l'utilisateur correspondant au choix de navigation
+            // cette valeur a été utilisée pour toutes les options de navigation à tous les niveaux 
+            int ChoixUtilisateur;
+
+            // variable utilisée pour stocker une recette avant son affichage
+            Class.Recette recetteTemp = null; ;
+            // variable utilisée pour stocker un lot avant son affichage
+            Class.Lot lot = null; ;
 
             do
             {
                 Interface.Utilitaire.NettoyerConsole();
                 Interface.MenuPrincipal.AfficherMenu();
-                saisieUtilisateur = Interface.MenuPrincipal.SaisieMenu();
+                ChoixUtilisateur = Interface.MenuPrincipal.SaisieMenu();
 
-                switch (saisieUtilisateur)
+                switch (ChoixUtilisateur)
                 {
                     // Menu Recette
                     case 1:
@@ -35,25 +43,29 @@ namespace M2_GestionFlexibleChariot
                         {
                             Interface.Utilitaire.NettoyerConsole();
                             Interface.MenuRecette.AfficherMenu();
-                            saisieUtilisateur = Interface.MenuRecette.SaisieMenu();
+                            ChoixUtilisateur = Interface.MenuRecette.SaisieMenu();
 
-                            switch (saisieUtilisateur)
+                            switch (ChoixUtilisateur)
                             {
                                 // afficher la liste des recettes
                                 case 1:
                                     Interface.Utilitaire.NettoyerConsole();
-                                    Interface.MenuRecette.AfficherListe();
+                                    Interface.MenuRecette.AfficherListeRecettes();
                                     Interface. Utilitaire.Attendre();
                                     break;
                                 // Affiche les détails d'une recette
                                 case 2:
+                                    Interface.MenuRecette.AfficherListeRecettes();
+                                    recetteTemp = Interface.MenuRecette.SelectionnerRecette();
                                     Console.WriteLine(" détails d'une recette");
                                     Interface.Utilitaire.Attendre();
+                                    // A COMPLETER
                                     break;
                                 // créer une recette
                                 case 3:
                                     Console.WriteLine(" créer une recette");
-                                    Interface.Utilitaire.Attendre();
+                                    Data.recettes.Add(Interface.Recette.SaisirCréation());
+                                    // A COMPLETER
                                     break;
                                 // quitter le menu recette --> retour au menu principal
                                 case 4:
@@ -76,24 +88,32 @@ namespace M2_GestionFlexibleChariot
                         {
                             Interface.Utilitaire.NettoyerConsole();
                             Interface.MenuLot.AfficherMenu();
-                            saisieUtilisateur = Interface.MenuLot.SaisieMenu();
+                            ChoixUtilisateur = Interface.MenuLot.SaisieMenu();
 
-                            switch (saisieUtilisateur)
+                            switch (ChoixUtilisateur)
                             {
                                 // afficher la liste des lots
                                 case 1:
                                     Interface.Utilitaire.NettoyerConsole();
-                                    Interface.MenuLot.AfficherListe();
+                                    Interface.MenuLot.AfficherListeLots();
                                     Interface.Utilitaire.Attendre();
                                     break;
                                 // Affiche les détails d'une recette
                                 case 2:
+                                    Interface.Utilitaire.NettoyerConsole();
+                                    Interface.MenuLot.AfficherListeLots();
+                                    lot = Interface.MenuLot.SelectionnerLot();
                                     Console.WriteLine(" détails d'un lot");
+                                    Interface.Lot.AfficherDetailLot(lot);
                                     Interface.Utilitaire.Attendre();
+                                    // A COMPLETER
                                     break;
                                 // créer une recette
                                 case 3:
                                     Console.WriteLine(" créer un lot");
+                                    lot = Interface.Lot.SaisirCréation();
+                                    Data.lots.Add(lot);
+                                    Interface.Lot.AfficherDetailLot(lot)
                                     Interface.Utilitaire.Attendre();
                                     break;
                                 // quitter le menu recette --> retour au menu principal

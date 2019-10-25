@@ -15,7 +15,6 @@ namespace M2_GestionFlexibleChariot.Interface
         /// </summary>
         public static void AfficherMenu()
         {
-            AfficherListe();
             System.Console.WriteLine();
 
             System.Console.WriteLine("1) Liste des lots");
@@ -26,18 +25,9 @@ namespace M2_GestionFlexibleChariot.Interface
         }
 
         /// <summary>
-        /// Affiche dans la console la liste des informations des lots en mémoire (sauf événement)
+        /// Fonction responable pour de la saisie au niveau du menu des lots
         /// </summary>
-        public static void AfficherListe()
-        {
-            System.Console.WriteLine("Liste Lots");
-            System.Console.WriteLine("{0} / {1} / {2} / {3}", "Identifiant", "Nom", "QuantitéAProduire", "Etat");
-            foreach (Lot lot in Data.lots)
-            {
-                System.Console.WriteLine("{0} / {1} / {2} / {3}", lot.Identifiant, lot.Nom, lot.QuantitéAProduire, lot.Etat.Libellé);
-            }
-        }
-
+        /// <returns> un entier correspondant au scénario choisi par l'utilisateur </returns>
         public static int SaisieMenu()
         {
             bool saisieValid = false;
@@ -53,14 +43,54 @@ namespace M2_GestionFlexibleChariot.Interface
                 }
                 else
                 {
-                    System.Console.WriteLine(" Saisissez une valeur entre 1 et 3 comme précisé dans le menu ! ");
+                    System.Console.WriteLine(" Saisissez une valeur entre 1 et 4 comme précisé dans le menu ! ");
                 }
             } while (!saisieValid);
 
             return saisie;
         }
 
+        /// <summary>
+        /// Affiche dans la console la liste des informations des lots en mémoire (sauf événement)
+        /// </summary>
+        public static void AfficherListeLots()
+        {
+            System.Console.WriteLine("Liste Lots");
+            System.Console.WriteLine("{0} / {1} / {2} / {3}", "Identifiant", "Nom", "QuantitéAProduire", "Etat");
+            foreach (Class.Lot lot in Data.lots)
+            {
+                System.Console.WriteLine("{0} / {1} / {2} / {3}", lot.Identifiant, lot.Nom, lot.QuantitéAProduire, lot.Etat.Libellé);
+            }
+        }
 
+        /// <summary>
+        /// Fonction permettant à l'utilisateur de sélectionner un lot
+        /// </summary>
+        /// <returns>un objet Class.Lot qui correspond à l'identifiant saisit par utilisateur</returns>
+        public static Class.Lot SelectionnerLot()
+        {
+            // affiche la listes des lots disponibles
+            AfficherListeLots();
+
+            bool saisieValide = false;
+            int identifiant = 0;
+            do
+            {
+                identifiant = Utilitaire.SaisirEntier("Identifiant du lot");
+
+                // A MODIFIER
+                if (Data.lots[identifiant]== null)
+                {
+                    saisieValide = true;
+                }
+                else
+                {
+                    System.Console.WriteLine("Veuillez saisir identifiant correct d'un Lot");
+                }
+            } while (!saisieValide);
+
+            return Data.lots[identifiant];
+        }
 
     }
 }

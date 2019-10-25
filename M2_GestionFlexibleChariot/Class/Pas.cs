@@ -44,6 +44,24 @@ namespace M2_GestionFlexibleChariot.Class
 
         // constructeur
 
+
+        /// <summary>
+        /// Constructeur pour créer un nouveau pas depuis l'application
+        /// </summary>
+        /// <param name="index"> numéro de pas pour la recette à laquel le pas est lié </param>
+        /// <param name="temps"> temps d'attente du chariot à la position </param>
+        /// <param name="position"> position à laquel le chariot doit se rendre </param>
+        /// <param name="libellé"> libellé du pas </param>
+        /// <param name="quittance"> quittance nécessaire avant de passer au pas suivant </param>
+        public Pas(int index, int temps, int position, string libellé, bool quittance)
+        {
+            this.index = index;
+            this.temps = temps;
+            this.position = position;
+            this.libellé = libellé;
+            this.quittance = quittance;
+        }
+
         /// <summary>
         /// Constructeur pour créer un pas importé depuis la base de données
         /// </summary>
@@ -56,23 +74,6 @@ namespace M2_GestionFlexibleChariot.Class
         public Pas(int identifiant, int index, int temps, int position, string libellé, bool quittance)
         {
             this.identifiant = identifiant;
-            this.index = index;
-            this.temps = temps;
-            this.position = position;
-            this.libellé = libellé;
-            this.quittance = quittance;
-        }
-
-        /// <summary>
-        /// Constructeur pour créer un nouveau pas depuis l'application
-        /// </summary>
-        /// <param name="index"> numéro de pas pour la recette à laquel le pas est lié </param>
-        /// <param name="temps"> temps d'attente du chariot à la position </param>
-        /// <param name="position"> position à laquel le chariot doit se rendre </param>
-        /// <param name="libellé"> libellé du pas </param>
-        /// <param name="quittance"> quittance nécessaire avant de passer au pas suivant </param>
-        public Pas(int index, int temps, int position, string libellé, bool quittance)
-        {
             this.index = index;
             this.temps = temps;
             this.position = position;
