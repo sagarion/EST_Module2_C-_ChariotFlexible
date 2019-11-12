@@ -8,6 +8,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/* Titre : Evenement.cs
+ * description : fichiers décrivant la classe métier Evenement
+ * Auteur : Daucourt Thibault
+ * Date : novembre 2019
+*/
+
 namespace M2_GestionFlexibleChariot.Class
 {
     class Evenement

@@ -4,6 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/* Titre : MenuPrincipal.cs
+ * description : fonctions d'interface associées au menu principal de l'application
+ * Auteur : Daucourt Thibault
+ * Date : novembre 2019
+*/
+
 namespace M2_GestionFlexibleChariot.Interface
 {
     class MenuPrincipal

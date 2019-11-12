@@ -5,6 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/* Titre : MenuRecette.cs
+ * description : fonctions d'interface associées au menu de gestion des recettes
+ * Auteur : Daucourt Thibault
+ * Date : novembre 2019
+*/
+
 namespace M2_GestionFlexibleChariot.Interface
 {
     class MenuRecette
@@ -54,15 +60,16 @@ namespace M2_GestionFlexibleChariot.Interface
         /// <summary>
         /// Affiche la liste des recettes disponibles
         /// </summary>
-        public static void AfficherListeRecettes()
+        public static void AfficherListeRecettes(List<Class.Recette> recettes)
         {
-            System.Console.WriteLine("--- Application Gestion Chariot Flexible ---");
+            System.Console.WriteLine("-- Liste recettes --");
             System.Console.WriteLine("");
-            System.Console.WriteLine("--> Liste recettes ");
-            System.Console.WriteLine("");
-            foreach (Class.Recette recette in Data.recettes)
+            System.Console.WriteLine(String.Format("{0,-11} | {1,-16} | {2,-10}",
+                        "Identifiant", "Date de création", "libellé de la recette"));
+            foreach (Class.Recette recette in recettes)
             {
-                System.Console.WriteLine(recette.ToString());
+                System.Console.WriteLine(String.Format("{0,-11} | {1,-16} | {2,-10}",
+                        recette.Identifiant, recette.DateCréation.ToShortDateString(), recette.Libellé));
             }
         }
 
@@ -70,10 +77,11 @@ namespace M2_GestionFlexibleChariot.Interface
         /// Renvoie la recette correspondante à l'identifiant saisie par l'utilisateur
         /// </summary>
         /// <returns> la recette correspondante à l'identifiant saisie par l'utilisateur </returns>
-        public static Class.Recette SelectionnerRecette()
+        public static Class.Recette SelectionnerRecette(List<Class.Recette> recettes)
         {
             // affiche la listes des recettes disponibles
-            AfficherListeRecettes();
+            AfficherListeRecettes(recettes);
+            Console.WriteLine();
 
             bool saisieValide = false;
             int identifiant = 0;
@@ -82,17 +90,56 @@ namespace M2_GestionFlexibleChariot.Interface
                 identifiant = Utilitaire.SaisirEntier("Identifiant de la recette");
 
                 // A MODIFIER
-                if (Data.recettes[identifiant] == null)
+                if (BDD.BDDRecette.EstIdentifiantValide(identifiant))
                 {
                     saisieValide = true;
                 }
                 else
                 {
-                    System.Console.WriteLine("Veuillez saisir identifiant correct d'une recette");
+                    System.Console.WriteLine("Erreur Veuillez saisir identifiant correct d'une recette");
                 }
             } while (!saisieValide);
 
-            return Data.recettes[identifiant];
+            return BDD.BDDRecette.GetRecette(identifiant);
+        }
+
+        /// <summary>
+        /// Renvoie la recette correspondante à l'identifiant saisie par l'utilisateur
+        /// </summary>
+        /// <returns> la recette correspondante à l'identifiant saisie par l'utilisateur </returns>
+        public static Class.Recette SelectionnerRecetteOptionnel(out bool annulation, List<Class.Recette> recettes)
+        {
+            // affiche la listes des recettes disponibles
+            AfficherListeRecettes(recettes);
+
+            bool saisieValide = false;
+            int identifiant = 0;
+            do
+            {
+                annulation = false;
+                identifiant = Utilitaire.SaisirEntierOptionnel("Identifiant de la recette",out annulation);
+                // A MODIFIER
+                if (annulation)
+                {
+                    saisieValide = true;
+                }
+                else if (BDD.BDDRecette.EstIdentifiantValide(identifiant))
+                {
+                    saisieValide = true;
+                }
+                else
+                {
+                    System.Console.WriteLine("Erreur Veuillez saisir identifiant correct d'une recette");
+                }
+            } while (!saisieValide);
+
+            if (annulation)
+            {
+                return null;
+            }
+            else{
+                return BDD.BDDRecette.GetRecette(identifiant);
+            }
         }
     }
 }

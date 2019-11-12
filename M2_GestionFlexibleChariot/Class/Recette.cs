@@ -8,6 +8,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/* Titre : Recette.cs
+ * description : fichiers décrivant la classe métier Recette
+ * Auteur : Daucourt Thibault
+ * Date : novembre 2019
+*/
+
 namespace M2_GestionFlexibleChariot.Class
 {
     class Recette
@@ -82,6 +88,10 @@ namespace M2_GestionFlexibleChariot.Class
             {
                 return identifiant;
             }
+            set
+            {
+                identifiant = value;
+            }
 
         }
 
@@ -128,16 +138,6 @@ namespace M2_GestionFlexibleChariot.Class
             {
                 dateCréation = value;
             }
-        }
-
-        public string ToString()
-        {
-            return $"{this.Identifiant.ToString()} / {this.Libellé} / {this.DateCréation.ToShortTimeString()}";
-        }
-
-        public Recette Duplicate()
-        {
-            return new Recette(identifiant,libellé,pas,dateCréation);
         }
     }
 }

@@ -8,6 +8,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/* Titre : Lot.cs
+ * description : fichiers décrivant la classe métier Lot
+ * Auteur : Daucourt Thibault
+ * Date : novembre 2019
+*/
+
 namespace M2_GestionFlexibleChariot.Class
 {
     class Lot
@@ -26,12 +32,18 @@ namespace M2_GestionFlexibleChariot.Class
 
         private Recette recette;
 
+        private int quantitéProduite;
+
         // propriété associé à l'identifiant
         public int Identifiant
         {
             get
             {
                 return identifiant;
+            }
+            set
+            {
+                identifiant = value;
             }
         }
 
@@ -115,6 +127,19 @@ namespace M2_GestionFlexibleChariot.Class
             }
         }
 
+        // propriété associé à la quantité de pièce déjà produite
+        public int QuantitéProduite
+        {
+            get
+            {
+                return quantitéProduite;
+            }
+            set
+            {
+                quantitéProduite = value;
+            }
+        }
+
 
         /// <summary>
         /// constructeur pour l'import de données
@@ -126,7 +151,7 @@ namespace M2_GestionFlexibleChariot.Class
         /// <param name="evenements"> la liste d'événement lié à ce lot</param>
         /// <param name="etat"> l'état actuel du lot</param>
         /// /// <param name="recette"> recette lié au lot</param>
-        public Lot(int identifiant, string nom, DateTime dateCréation, int quantitéAProduire, List<Evenement> evenements, Etat etat, Recette recette)
+        public Lot(int identifiant, string nom, DateTime dateCréation, int quantitéAProduire, List<Evenement> evenements, Etat etat, Recette recette, int quantitéProduite)
         {
             this.identifiant = identifiant;
             this.nom = nom;
@@ -135,8 +160,15 @@ namespace M2_GestionFlexibleChariot.Class
             this.evenements = evenements;
             this.etat = etat;
             this.recette = recette;
+            this.quantitéProduite = quantitéProduite;
         }
 
+        /// <summary>
+        /// constructeur pour la création local d'un lot
+        /// </summary>
+        /// <param name="nom"> nom du lot</param>
+        /// <param name="quantitéAProduire"> quantité de pièce à produire</param>
+        /// <param name="idRecette"> identifiant de la recette utilisé pour produire</param>
         public Lot(string nom, int quantitéAProduire, int idRecette)
         {
             this.nom = nom;
@@ -144,7 +176,7 @@ namespace M2_GestionFlexibleChariot.Class
             this.etat = new Etat(1,"En attente");
             this.evenements = new List<Evenement>();
             this.dateCréation = DateTime.Now;
-            this.recette = Data.recettes[idRecette];
+            this.recette = BDD.BDDRecette.GetRecette(idRecette);
         }
     }
 }

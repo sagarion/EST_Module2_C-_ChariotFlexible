@@ -5,6 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/* Titre : MenuLot.cs
+ * description : fonctions d'interface associées au menu de gestion des lots
+ * Auteur : Daucourt Thibault
+ * Date : novembre 2019
+*/
+
 namespace M2_GestionFlexibleChariot.Interface
 {
     class MenuLot
@@ -15,12 +21,12 @@ namespace M2_GestionFlexibleChariot.Interface
         /// </summary>
         public static void AfficherMenu()
         {
-            System.Console.WriteLine();
-
+            Console.WriteLine("--> Menu des lots ");
             System.Console.WriteLine("1) Liste des lots");
             System.Console.WriteLine("2) Détails d'un lot");
             System.Console.WriteLine("3) Créer un nouveau lot");
             System.Console.WriteLine("4) Retour au menu principale");
+            Console.WriteLine();
 
         }
 
@@ -55,11 +61,13 @@ namespace M2_GestionFlexibleChariot.Interface
         /// </summary>
         public static void AfficherListeLots()
         {
-            System.Console.WriteLine("Liste Lots");
-            System.Console.WriteLine("{0} / {1} / {2} / {3}", "Identifiant", "Nom", "QuantitéAProduire", "Etat");
-            foreach (Class.Lot lot in Data.lots)
+            System.Console.WriteLine("-- Liste Lots --");
+            System.Console.WriteLine(String.Format("{0,-11} | {1,-30} | {2,-20} | {3,-25} | {4,10}",
+                "Identifiant", "Nom", "Quantitée A Produire", "Etat", "Quantitée déjà Produite"));
+            foreach (Class.Lot lot in BDD.BDDLot.GetLots())
             {
-                System.Console.WriteLine("{0} / {1} / {2} / {3}", lot.Identifiant, lot.Nom, lot.QuantitéAProduire, lot.Etat.Libellé);
+                System.Console.WriteLine(String.Format("{0,-11} | {1,-30} | {2,-20} | {3,-25} | {4,10}",
+                    lot.Identifiant, lot.Nom, lot.QuantitéAProduire, lot.Etat.Libellé, lot.QuantitéProduite));
             }
         }
 
@@ -71,7 +79,7 @@ namespace M2_GestionFlexibleChariot.Interface
         {
             // affiche la listes des lots disponibles
             AfficherListeLots();
-
+            Console.WriteLine();
             bool saisieValide = false;
             int identifiant = 0;
             do
@@ -79,7 +87,7 @@ namespace M2_GestionFlexibleChariot.Interface
                 identifiant = Utilitaire.SaisirEntier("Identifiant du lot");
 
                 // A MODIFIER
-                if (Data.lots[identifiant]== null)
+                if (BDD.BDDLot.EstIdentifiantValide(identifiant))
                 {
                     saisieValide = true;
                 }
@@ -89,7 +97,7 @@ namespace M2_GestionFlexibleChariot.Interface
                 }
             } while (!saisieValide);
 
-            return Data.lots[identifiant];
+            return BDD.BDDLot.GetLot(identifiant);
         }
 
     }
